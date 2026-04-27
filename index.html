@@ -4,1096 +4,352 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rahul Bhattacharyya | PhD, IIT Kanpur</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #0e0e0e;
-      --paper: #f5f2eb;
-      --paper-mid: #ede9df;
-      --accent: #c0392b;
-      --accent-warm: #e67e22;
-      --gold: #b8962e;
-      --muted: #7a7060;
-      --rule: #d4cfc4;
-      --highlight: #fdf6e3;
-      --card-bg: #fefcf7;
+      --primary: #003366; /* Professional Deep Blue */
+      --accent: #c0392b; /* IITK Red Accent */
+      --text-main: #2c3e50;
+      --text-muted: #5f6769;
+      --bg-body: #ffffff;
+      --bg-side: #f8f9fa;
+      --border: #e1e4e8;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      font-size: 16px;
-      line-height: 1.7;
-      overflow-x: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-body);
+      line-height: 1.6;
     }
 
-    /* ── NOISE TEXTURE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.4;
+    /* --- LAYOUT --- */
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
 
-    /* ── NAVIGATION ── */
-    nav {
-      position: fixed;
+    header {
+      border-bottom: 1px solid var(--border);
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.1rem 3rem;
-      background: rgba(245, 242, 235, 0.88);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--rule);
+      background: rgba(255, 255, 255, 0.95);
+      z-index: 1000;
+      backdrop-filter: blur(5px);
     }
 
-    .nav-logo {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      text-transform: uppercase;
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .nav-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+      text-decoration: none;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.2rem;
+      gap: 1.5rem;
       list-style: none;
     }
 
     .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
       text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--primary); }
 
-    /* ── HERO ── */
+    /* --- HERO --- */
     .hero {
-      min-height: 100vh;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-top: 4.5rem;
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 5rem 4rem 5rem 5rem;
-      position: relative;
-    }
-
-    .hero-left::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 15%;
-      bottom: 15%;
-      width: 1px;
-      background: var(--rule);
-    }
-
-    .hero-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .hero-tag::before {
-      content: '';
-      display: inline-block;
-      width: 2rem;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(3.2rem, 5vw, 5rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      margin-bottom: 1.8rem;
-    }
-
-    h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .hero-bio {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 38ch;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      padding: 0.35rem 0.8rem;
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      color: var(--muted);
-      background: var(--card-bg);
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.85rem 1.8rem;
-      background: var(--ink);
-      color: var(--paper);
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
-
-    .btn-outline {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.85rem 1.8rem;
-      background: transparent;
-      color: var(--ink);
-      border: 1px solid var(--ink);
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.2s;
-    }
-
-    .btn-outline:hover { background: var(--ink); color: var(--paper); }
-
-    /* HERO RIGHT */
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 5rem 5rem 5rem 4rem;
-      gap: 1.5rem;
-    }
-
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--rule);
-      padding: 1.5rem 1.8rem;
-      position: relative;
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--accent);
-    }
-
-    .stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.8rem;
-      line-height: 1;
-      color: var(--ink);
-      margin-bottom: 0.3rem;
-    }
-
-    .stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .stat-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .stat-card.small .stat-num { font-size: 2rem; }
-
-    /* ── SECTION COMMONS ── */
-    section {
-      padding: 5.5rem 5rem;
-      border-top: 1px solid var(--rule);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 1.5rem;
-      margin-bottom: 3.5rem;
-    }
-
-    .section-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-    }
-
-    h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-    }
-
-    /* ── ABOUT / RESEARCH ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 4rem;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+      padding: 4rem 0;
       align-items: start;
     }
 
-    .about-text p {
-      color: var(--muted);
-      line-height: 1.85;
-      margin-bottom: 1.2rem;
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 1/1.1;
+      background: #eee;
+      border-radius: 4px;
+      object-fit: cover;
+      border: 1px solid var(--border);
     }
 
-    .about-text p:last-child { margin-bottom: 0; }
-
-    .contact-block {
-      background: var(--card-bg);
-      border: 1px solid var(--rule);
-      padding: 2rem;
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
     }
 
-    .contact-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .contact-row:last-child { border-bottom: none; }
-
-    .contact-icon {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      min-width: 4rem;
-      padding-top: 0.2rem;
-    }
-
-    .contact-val {
-      font-size: 0.9rem;
-      color: var(--ink);
-      word-break: break-all;
-    }
-
-    .contact-val a {
-      color: var(--ink);
-      text-decoration: none;
-    }
-
-    .contact-val a:hover { color: var(--accent); }
-
-    /* ── EDUCATION ── */
-    .edu-timeline {
-      position: relative;
-      padding-left: 2rem;
-    }
-
-    .edu-timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.6rem;
-      bottom: 0.6rem;
-      width: 1px;
-      background: var(--rule);
-    }
-
-    .edu-item {
-      position: relative;
-      padding: 0 0 3rem 2.5rem;
-    }
-
-    .edu-item:last-child { padding-bottom: 0; }
-
-    .edu-item::before {
-      content: '';
-      position: absolute;
-      left: -2rem;
-      top: 0.55rem;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid var(--paper);
-      outline: 1px solid var(--accent);
-    }
-
-    .edu-year {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-
-    .edu-degree {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.3rem;
-      color: var(--ink);
-      margin-bottom: 0.2rem;
-    }
-
-    .edu-inst {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-
-    .edu-cpi {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--gold);
-      letter-spacing: 0.08em;
-    }
-
-    .edu-thesis {
-      margin-top: 0.8rem;
-      padding: 0.8rem 1rem;
-      background: var(--highlight);
-      border-left: 2px solid var(--gold);
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    /* ── RESEARCH ── */
-    .research-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .research-card {
-      background: var(--card-bg);
-      border: 1px solid var(--rule);
-      padding: 2rem;
-      transition: border-color 0.2s, transform 0.2s;
-      position: relative;
-    }
-
-    .research-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .research-card.featured {
-      border-left: 3px solid var(--accent);
-    }
-
-    .rc-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.8rem;
-    }
-
-    .rc-title {
-      font-family: 'DM Serif Display', serif;
+    .hero-title {
       font-size: 1.1rem;
-      margin-bottom: 0.7rem;
-      line-height: 1.3;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
     }
 
-    .rc-desc {
-      font-size: 0.87rem;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 1rem;
-    }
-
-    .rc-meta {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      padding-top: 0.8rem;
-      border-top: 1px solid var(--rule);
-    }
-
-    /* ── PUBLICATIONS ── */
-    .pub-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .pub-item {
-      display: grid;
-      grid-template-columns: 2.5rem 1fr;
-      gap: 1.2rem;
-      padding: 1.4rem;
-      background: var(--card-bg);
-      border: 1px solid var(--rule);
-      transition: border-color 0.2s;
-    }
-
-    .pub-item:hover { border-color: var(--accent); }
-
-    .pub-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.6rem;
-      color: var(--rule);
-      line-height: 1;
-      padding-top: 0.2rem;
-    }
-
-    .pub-body {}
-
-    .pub-title {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--ink);
-      line-height: 1.5;
-      margin-bottom: 0.35rem;
-    }
-
-    .pub-authors {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 0.35rem;
-    }
-
-    .pub-venue {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.06em;
-      color: var(--accent);
-    }
-
-    /* ── PATENTS ── */
-    .patents-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .patent-card {
-      border: 1px solid var(--rule);
-      padding: 1.8rem;
-      background: var(--card-bg);
-      position: relative;
-    }
-
-    .patent-status {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-      display: inline-block;
-      margin-bottom: 1rem;
-    }
-
-    .patent-status.granted {
-      background: #e8f5e9;
-      color: #2e7d32;
-      border: 1px solid #a5d6a7;
-    }
-
-    .patent-status.published {
-      background: #fff3e0;
-      color: #e65100;
-      border: 1px solid #ffcc80;
-    }
-
-    .patent-title {
-      font-size: 0.9rem;
-      line-height: 1.55;
-      color: var(--ink);
-      margin-bottom: 0.8rem;
-    }
-
-    .patent-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-    }
-
-    /* ── SKILLS ── */
-    .skills-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .skills-group-title {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.2rem;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .skill-tag {
-      font-size: 0.85rem;
-      padding: 0.4rem 0.9rem;
-      background: var(--paper-mid);
-      border: 1px solid var(--rule);
-      color: var(--ink);
-    }
-
-    .course-list {
+    .contact-list {
       list-style: none;
-    }
-
-    .course-list li {
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--rule);
       font-size: 0.9rem;
-      color: var(--muted);
+    }
+
+    .contact-list li {
+      margin-bottom: 0.4rem;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
-    .course-list li::before {
-      content: '—';
-      color: var(--accent);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-    }
+    .contact-list a { color: var(--accent); text-decoration: none; }
 
-    /* ── TEACHING ── */
-    .teaching-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.5rem;
-    }
+    /* --- SECTIONS --- */
+    section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+    section:last-child { border-bottom: none; }
 
-    .teaching-card {
-      padding: 1.8rem;
-      border: 1px solid var(--rule);
-      background: var(--card-bg);
-    }
-
-    .tc-icon {
+    h2 {
       font-size: 1.5rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .tc-title {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.6rem;
-    }
-
-    .tc-body {
-      font-size: 0.87rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 3rem 5rem;
-      border-top: 1px solid var(--rule);
+      letter-spacing: 1px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 10px;
     }
 
-    .footer-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
+    h2::after {
+      content: "";
+      height: 1px;
+      flex-grow: 1;
+      background: var(--border);
     }
 
-    .footer-meta {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
+    /* --- NEWS --- */
+    .news-box {
+      max-height: 250px;
+      overflow-y: auto;
+      background: var(--bg-side);
+      padding: 1.5rem;
+      border-radius: 4px;
+      border-left: 4px solid var(--primary);
     }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .news-item {
+      font-size: 0.9rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      gap: 1rem;
     }
 
-    .hero-left > * {
-      animation: fadeUp 0.7s ease both;
-    }
-    .hero-left > *:nth-child(1) { animation-delay: 0.05s; }
-    .hero-left > *:nth-child(2) { animation-delay: 0.15s; }
-    .hero-left > *:nth-child(3) { animation-delay: 0.25s; }
-    .hero-left > *:nth-child(4) { animation-delay: 0.35s; }
-    .hero-left > *:nth-child(5) { animation-delay: 0.45s; }
-
-    .hero-right {
-      animation: fadeUp 0.8s ease 0.3s both;
+    .news-date {
+      font-weight: 600;
+      color: var(--primary);
+      min-width: 85px;
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
+    /* --- LISTS --- */
+    .pub-item, .patent-item {
+      margin-bottom: 1.5rem;
+      padding-left: 1rem;
+      border-left: 2px solid transparent;
+      transition: 0.2s;
+    }
+
+    .pub-item:hover { border-left-color: var(--accent); }
+
+    .pub-title { font-weight: 600; display: block; color: var(--text-main); }
+    .pub-authors { font-size: 0.9rem; color: var(--text-muted); }
+    .pub-venue { font-size: 0.9rem; font-style: italic; color: var(--primary); }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      background: #f0f0f0;
+      border-radius: 12px;
+      margin-right: 5px;
+      color: var(--text-muted);
+    }
+
+    /* --- EXPERIENCE/EDU --- */
+    .timeline-item { margin-bottom: 2rem; }
+    .timeline-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .timeline-title { font-weight: 700; color: var(--text-main); }
+    .timeline-date { font-size: 0.85rem; color: var(--text-muted); font-family: monospace; }
+    .timeline-sub { font-size: 0.95rem; color: var(--primary); font-weight: 500; }
+
+    footer {
+      background: var(--bg-side);
+      padding: 3rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .profile-photo { width: 200px; margin: 0 auto; }
       .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; min-height: auto; padding: 5rem 0 2rem; }
-      .hero-left { padding: 2.5rem 1.5rem; }
-      .hero-left::after { display: none; }
-      .hero-right { padding: 1.5rem; }
-      section { padding: 3.5rem 1.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .skills-layout { grid-template-columns: 1fr; }
-      .teaching-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+      .timeline-header { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <span class="nav-logo">Rahul Bhattacharyya</span>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#patents">Patents</a></li>
-    <li><a href="#teaching">Teaching</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="top" style="border-top:none; padding: 0;">
-  <div class="hero-left">
-    <div class="hero-tag">PhD · IIT Kanpur</div>
-    <h1>Rahul<br><em>Bhattacharyya</em></h1>
-    <p class="hero-bio">
-      Electrical Engineer & Researcher specialising in wireless communication, 
-      machine learning, and blockchain architecture. Co-PI on a DoT-funded 6G project; 
-      building next-generation railway communications at IIT Kanpur.
-    </p>
-    <div class="hero-badges">
-      <span class="badge">6G Networks</span>
-      <span class="badge">CBTC / Railway DCS</span>
-      <span class="badge">Blockchain</span>
-      <span class="badge">Machine Learning</span>
-      <span class="badge">IEEE Author</span>
-    </div>
-    <div class="hero-cta">
-      <a href="mailto:rahulbt@iitk.ac.in" class="btn-primary">Get in Touch</a>
-      <a href="#research" class="btn-outline">View Research</a>
-    </div>
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="nav-name">Rahul Bhattacharyya</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#teaching">Teaching</a></li>
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <div class="hero-right">
-    <div class="stat-card">
-      <div class="stat-num">9.33</div>
-      <div class="stat-label">PhD CPI — IIT Kanpur</div>
-    </div>
-    <div class="stat-row">
-      <div class="stat-card small">
-        <div class="stat-num">5+</div>
-        <div class="stat-label">IEEE Publications</div>
-      </div>
-      <div class="stat-card small">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Patents</div>
-      </div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">₹55.5L</div>
-      <div class="stat-label">Funded Research — DoT, Govt. of India</div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-header">
-    <span class="section-num">01</span>
-    <h2>About</h2>
-  </div>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>
-        I am a Senior Project Executive Officer in the Department of Electrical Engineering at IIT Kanpur, 
-        where I submitted my PhD thesis in January 2026. My doctoral research focused on next-generation 
-        blockchain architecture — spanning economic mechanisms, scalable infrastructure, and real-world 
-        deployment scenarios.
+<div class="container">
+  <section class="hero" id="about">
+    <img src="your-photo.jpg" alt="Rahul Bhattacharyya" class="profile-photo"> <div class="hero-content">
+      <h1>Rahul Bhattacharyya</h1>
+      <p class="hero-title">
+        Senior Project Executive Officer & PhD Candidate<br>
+        Department of Electrical Engineering, Indian Institute of Technology Kanpur
       </p>
-      <p>
-        Currently, I lead the development of a Data Communication System (DCS) for Communication-Based 
-        Train Control (CBTC) for HBL Engineering, covering wireless networking, IEEE 1588 PTP 
-        time-synchronisation, and high-speed railway communications protocols.
-      </p>
-      <p>
-        As Co-Principal Investigator on a Department of Telecommunications (DoT) funded 6G project, 
-        my focus lies on real-time Channel State Information prediction using deep learning to reduce 
-        feedback overhead in next-generation networks.
-      </p>
-      <p>
-        Beyond research, I am passionate about mentoring the next generation of engineers and am 
-        actively seeking academic positions to bring my research and teaching experience to students.
+      <ul class="contact-list">
+        <li><strong>Email:</strong> <a href="mailto:rahulbt@iitk.ac.in">rahulbt@iitk.ac.in</a> / <a href="mailto:rahulbhatta0@gmail.com">rahulbhatta0@gmail.com</a></li>
+        <li><strong>Phone:</strong> +91-8617747109</li>
+        <li><strong>Office:</strong> ACMS 203, IIT Kanpur, UP, India - 208016</li>
+        <li style="margin-top:1rem;">
+          <a href="#">[Google Scholar]</a> &nbsp; <a href="#">[LinkedIn]</a> &nbsp; <a href="#">[GitHub]</a>
+        </li>
+      </ul>
+      <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-muted);">
+        My research focuses on <strong>Next-Generation Blockchain Architecture</strong>, 
+        scalable infrastructure, and <strong>6G Wireless Communication</strong>. 
+        I lead the Data Communication System (DCS) project for Railway CBTC at IIT Kanpur.
       </p>
     </div>
-    <div class="contact-block">
-      <div class="contact-row">
-        <span class="contact-icon">Email</span>
-        <span class="contact-val"><a href="mailto:rahulbt@iitk.ac.in">rahulbt@iitk.ac.in</a><br>
-        <a href="mailto:rahulbhatta0@gmail.com">rahulbhatta0@gmail.com</a></span>
-      </div>
-      <div class="contact-row">
-        <span class="contact-icon">Phone</span>
-        <span class="contact-val">+91-8617747109</span>
-      </div>
-      <div class="contact-row">
-        <span class="contact-icon">Address</span>
-        <span class="contact-val">Dept. of Electrical Engineering<br>IIT Kanpur, Kanpur – 208016</span>
-      </div>
-      <div class="contact-row">
-        <span class="contact-icon">Position</span>
-        <span class="contact-val">Senior Project Executive Officer</span>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-header">
-    <span class="section-num">02</span>
-    <h2>Education</h2>
-  </div>
-  <div class="edu-timeline">
-
-    <div class="edu-item">
-      <div class="edu-year">2016 – 2026</div>
-      <div class="edu-degree">Ph.D. in Electrical Engineering</div>
-      <div class="edu-inst">Indian Institute of Technology Kanpur</div>
-      <div class="edu-cpi">CPI: 9.33 / 10</div>
-      <div class="edu-thesis">
-        Thesis: <em>Next-Generation Blockchain Architecture: From Economic Mechanisms to Scalable Infrastructure and Real-World Applications</em> — Submitted January 2026
+  <section id="news">
+    <h2>Recent Updates</h2>
+    <div class="news-box">
+      <div class="news-item">
+        <span class="news-date">Apr. 2026</span>
+        <span>Coordinating technical presentations for external project personnel (June 6-13).</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Jan. 2026</span>
+        <span>Submitted Ph.D. Thesis titled "Next-Generation Blockchain Architecture".</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Mar. 2025</span>
+        <span>Presented paper on Robust Attitude Estimation at ICCAE 2025, Perth, Australia.</span>
       </div>
     </div>
+  </section>
 
-    <div class="edu-item">
-      <div class="edu-year">2014 – 2016</div>
-      <div class="edu-degree">M.Tech in Electronics & Communication Engineering</div>
-      <div class="edu-inst">Indian Institute of Technology (ISM) Dhanbad</div>
-      <div class="edu-cpi">CPI: 9.29 / 10</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="edu-year">2009 – 2013</div>
-      <div class="edu-degree">B.Tech in Electronics & Communication Engineering</div>
-      <div class="edu-inst">MAKAUT, West Bengal</div>
-      <div class="edu-cpi">CPI: 8.38 / 10</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- RESEARCH -->
-<section id="research">
-  <div class="section-header">
-    <span class="section-num">03</span>
-    <h2>Research & Projects</h2>
-  </div>
-  <div class="research-grid">
-
-    <div class="research-card featured">
-      <div class="rc-tag">Ongoing · Co-PI</div>
-      <div class="rc-title">Efficient 6G Network Design</div>
-      <div class="rc-desc">
-        Real-Time Channel State Information (CSI) prediction to reduce feedback overhead in 6G systems using deep learning. Funded by the Department of Telecommunications, Govt. of India.
+  <section id="research">
+    <h2>Research & Funded Projects</h2>
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <span class="timeline-title">Efficient 6G Network Design (Co-PI)</span>
+        <span class="timeline-date">2024 – Present</span>
       </div>
-      <div class="rc-meta">Grant: ₹55,49,400 · Dec 2024 – Ongoing · Funder: DoT, Govt. of India</div>
+      <div class="timeline-sub">Department of Telecommunications (DoT), Govt. of India | ₹55.5L</div>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Developing real-time CSI prediction models using deep learning to minimize feedback overhead in 6G systems.</p>
     </div>
 
-    <div class="research-card featured">
-      <div class="rc-tag">Ongoing · Lead Engineer</div>
-      <div class="rc-title">CBTC Data Communication System</div>
-      <div class="rc-desc">
-        Developing a full-stack wireless DCS for railway CBTC applications at IIT Kanpur, covering IEEE 802.11p OCB, IEEE 1588 PTP time-sync, and railway-grade security (EN 50159).
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <span class="timeline-title">CBTC Data Communication System (Lead Engineer)</span>
+        <span class="timeline-date">2025 – Present</span>
       </div>
-      <div class="rc-meta">Client: HBL Engineering · IIT Kanpur</div>
+      <div class="timeline-sub">HBL Engineering & IIT Kanpur</div>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">Full-stack development of wireless DCS for railways, including IEEE 1588 PTP and 802.11p protocols.</p>
     </div>
+  </section>
 
-    <div class="research-card">
-      <div class="rc-tag">Completed · Sr. Student Research Associate</div>
-      <div class="rc-title">Algorithm Design for AHRS</div>
-      <div class="rc-desc">
-        Developed an adaptive Kalman filter-based algorithm for attitude estimation without prior system knowledge, for Hindustan Aeronautics Limited (HAL).
-      </div>
-      <div class="rc-meta">Client: HAL · PI: Prof. Y. N. Singh</div>
-    </div>
-
-    <div class="research-card">
-      <div class="rc-tag">2023 · Co-founder</div>
-      <div class="rc-title">YRRNA Systems Lab Pvt. Ltd.</div>
-      <div class="rc-desc">
-        Research cooperative established during PhD tenure. Developing "B4 OLM," a peer-to-peer online marketplace targeting grassroots economic empowerment.
-      </div>
-      <div class="rc-meta">India · Private Venture</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PUBLICATIONS -->
-<section id="publications">
-  <div class="section-header">
-    <span class="section-num">04</span>
-    <h2>Publications</h2>
-  </div>
-  <div class="pub-list">
-
+  <section id="publications">
+    <h2>Selected Publications</h2>
+    
     <div class="pub-item">
-      <div class="pub-num">01</div>
-      <div class="pub-body">
-        <div class="pub-title">Robust Attitude Estimation with Quaternion Left-Invariant EKF and Noise Covariance Tuning</div>
-        <div class="pub-authors">Pandey, Y.* · <strong>Bhattacharyya, R.*</strong> · Singh, Y. N.&nbsp;&nbsp;<em>(*Equal Contribution)</em></div>
-        <div class="pub-venue">2025 17th International Conference on Computer and Automation Engineering (ICCAE) · IEEE · 2025</div>
-      </div>
+      <span class="pub-title">Robust Attitude Estimation with Quaternion Left-Invariant EKF and Noise Covariance Tuning</span>
+      <span class="pub-authors">Pandey, Y., <strong>Bhattacharyya, R.</strong>, Singh, Y. N.</span>
+      <span class="pub-venue">IEEE International Conference on Computer and Automation Engineering (ICCAE), 2025</span>
     </div>
 
     <div class="pub-item">
-      <div class="pub-num">02</div>
-      <div class="pub-body">
-        <div class="pub-title">ReputeStream: Mitigating Free-Riding through Reputation-Based Multi-Layer P2P Live Streaming</div>
-        <div class="pub-authors">Kushwaha, R. · <strong>Bhattacharyya, R.</strong> · Singh, Y. N.</div>
-        <div class="pub-venue">COMSNETS · IEEE · 2025</div>
-      </div>
+      <span class="pub-title">ReputeStream: Mitigating Free-Riding through Reputation-Based Multi-Layer P2P Live Streaming</span>
+      <span class="pub-authors">Kushwaha, R., <strong>Bhattacharyya, R.</strong>, Singh, Y. N.</span>
+      <span class="pub-venue">COMSNETS, IEEE, 2025</span>
     </div>
 
     <div class="pub-item">
-      <div class="pub-num">03</div>
-      <div class="pub-body">
-        <div class="pub-title">Reputation-Driven Peer-to-Peer Live Streaming Architecture for Preventing Free-Riding</div>
-        <div class="pub-authors">Kushwaha, R. · <strong>Bhattacharyya, R.</strong> · Singh, Y. N.</div>
-        <div class="pub-venue">ITNAC · IEEE · 2024</div>
-      </div>
+      <span class="pub-title">Enhanced XR Services: Performance Analysis with Integration of Passive Optical Networks (PONs)</span>
+      <span class="pub-authors">Patel, A., <strong>Bhattacharyya, R.</strong>, Singh, Y. N.</span>
+      <span class="pub-venue">CSNDSP, IEEE, 2024</span>
     </div>
+  </section>
 
-    <div class="pub-item">
-      <div class="pub-num">04</div>
-      <div class="pub-body">
-        <div class="pub-title">Enhanced XR Services: Performance Analysis with Integration of Passive Optical Networks (PONs)</div>
-        <div class="pub-authors">Patel, A. · <strong>Bhattacharyya, R.</strong> · Singh, Y. N.</div>
-        <div class="pub-venue">CSNDSP · IEEE · 2024</div>
-      </div>
-    </div>
-
-    <div class="pub-item">
-      <div class="pub-num">05</div>
-      <div class="pub-body">
-        <div class="pub-title">Adaptive Invariant Extended Kalman Filter with Noise Covariance Tuning for Attitude Estimation</div>
-        <div class="pub-authors">Pandey, Y.* · <strong>Bhattacharyya, R.*</strong> · Singh, Y. N.&nbsp;&nbsp;<em>(*Equal Contribution)</em></div>
-        <div class="pub-venue">arXiv preprint arXiv:2410.01958 · 2024</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PATENTS -->
-<section id="patents">
-  <div class="section-header">
-    <span class="section-num">05</span>
+  <section id="patents">
     <h2>Patents</h2>
-  </div>
-  <div class="patents-grid">
-
-    <div class="patent-card">
-      <span class="patent-status granted">✓ Granted</span>
-      <div class="patent-title">System for Fusion of Asynchronous Data from Multiple Sensors Using Adaptive Kalman Filtering Without Prior Knowledge of System Dynamics</div>
-      <div class="patent-num">Patent No. 570597</div>
+    <div class="patent-item">
+      <span class="tag" style="background:#e8f5e9; color:#2e7d32;">Granted</span>
+      <span class="pub-title">System for Fusion of Asynchronous Data from Multiple Sensors Using Adaptive Kalman Filtering</span>
+      <span class="pub-authors">Patent No. 570597</span>
     </div>
-
-    <div class="patent-card">
-      <span class="patent-status published">Published</span>
-      <div class="patent-title">System and Method for Advanced Driver Assistance Leveraging Auto-CNN Technology</div>
-      <div class="patent-num">Application No. 202411075264</div>
+    <div class="patent-item">
+      <span class="tag">Published</span>
+      <span class="pub-title">System and Method for Powering Blockchain-Based Peer-to-Peer Energy Trading</span>
+      <span class="pub-authors">Application No. 202411094150</span>
     </div>
+  </section>
 
-    <div class="patent-card">
-      <span class="patent-status published">Published</span>
-      <div class="patent-title">System and Method for Powering Blockchain-Based Peer-to-Peer Energy Trading</div>
-      <div class="patent-num">Application No. 202411094150</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-header">
-    <span class="section-num">06</span>
-    <h2>Skills & Courses</h2>
-  </div>
-  <div class="skills-layout">
-    <div>
-      <div class="skills-group-title">Core Technical Areas</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Machine Learning</span>
-        <span class="skill-tag">Wireless Communication</span>
-        <span class="skill-tag">Digital Communication Networks</span>
-        <span class="skill-tag">Embedded Programming</span>
-        <span class="skill-tag">Algorithm Design</span>
-        <span class="skill-tag">Blockchain Architecture</span>
-        <span class="skill-tag">IEEE 802.11 / 802.11p</span>
-        <span class="skill-tag">IEEE 1588 PTP</span>
-        <span class="skill-tag">Kalman Filtering</span>
-        <span class="skill-tag">Deep Learning</span>
-        <span class="skill-tag">P2P Networks</span>
-        <span class="skill-tag">CBTC / Railway DCS</span>
+  <section id="education">
+    <h2>Education</h2>
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <span class="timeline-title">Indian Institute of Technology Kanpur</span>
+        <span class="timeline-date">2016 – 2026</span>
       </div>
-
-      <div class="skills-group-title">Undergraduate Courses Offered</div>
-      <ul class="course-list">
-        <li>Programming in C/C++ and Python</li>
-        <li>Computer Networks</li>
-        <li>Digital Logic and Embedded Systems</li>
-        <li>Introduction to Machine Learning</li>
-        <li>Software Development with AI Tools</li>
-      </ul>
+      <div class="timeline-sub">Ph.D. in Electrical Engineering (CPI: 9.33/10)</div>
     </div>
-
-    <div>
-      <div class="skills-group-title">Postgraduate Courses Offered</div>
-      <ul class="course-list">
-        <li>Advanced Machine Learning</li>
-        <li>AI for Communication Networks</li>
-        <li>Next-Generation Blockchain Architecture</li>
-        <li>Machine Learning for Signal Processing and Communications</li>
-      </ul>
-
-      <div class="skills-group-title" style="margin-top: 2rem;">Teaching Experience</div>
-      <ul class="course-list">
-        <li>Tutor — Basic Electronics (IIT-ISM, IIT Kanpur)</li>
-        <li>TA — Peer-to-Peer Networks</li>
-        <li>TA — Digital Communication</li>
-        <li>TA — Quantum & Wave Phenomena</li>
-        <li>TA — Digital Switching</li>
-        <li>DPGC Admissions Coordinator (2018 & 2019)</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- TEACHING / MENTORSHIP -->
-<section id="teaching">
-  <div class="section-header">
-    <span class="section-num">07</span>
-    <h2>Mentorship & Service</h2>
-  </div>
-  <div class="teaching-grid">
-
-    <div class="teaching-card">
-      <div class="tc-icon">🎓</div>
-      <div class="tc-title">AICTE Internship Mentorship</div>
-      <div class="tc-body">
-        Mentored 4 students under the AICTE Internship Programme for J&K (2021–2023) in Blockchain and Machine Learning topics.
+    <div class="timeline-item">
+      <div class="timeline-header">
+        <span class="timeline-title">Indian Institute of Technology (ISM) Dhanbad</span>
+        <span class="timeline-date">2014 – 2016</span>
       </div>
+      <div class="timeline-sub">M.Tech in Electronics & Communication (CPI: 9.29/10)</div>
     </div>
+  </section>
 
-    <div class="teaching-card">
-      <div class="tc-icon">💡</div>
-      <div class="tc-title">B.Tech Intern Supervision</div>
-      <div class="tc-body">
-        Mentored over 15 B.Tech interns across 3 years, supervising research in wireless networking, embedded systems, and AI.
-      </div>
-    </div>
+</div>
 
-    <div class="teaching-card">
-      <div class="tc-icon">🏛️</div>
-      <div class="tc-title">Academic Service</div>
-      <div class="tc-body">
-        Served as DPGC Admissions Coordinator at IIT Kanpur in 2018 and 2019, managing postgraduate admissions for the Electrical Engineering department.
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <div>
-    <div class="footer-name">Rahul Bhattacharyya</div>
-    <div class="footer-meta" style="margin-top:0.4rem;">IIT Kanpur · Dept. of Electrical Engineering</div>
-  </div>
-  <div class="footer-meta" style="text-align:right;">
-    <div>rahulbt@iitk.ac.in</div>
-    <div style="margin-top:0.3rem;">+91-8617747109</div>
+  <div class="container">
+    <p>&copy; 2026 Rahul Bhattacharyya. Last updated: April 2026.</p>
+    <p style="font-size: 0.7rem; margin-top: 0.5rem; opacity: 0.6;">Built with minimalist CSS for maximum performance.</p>
   </div>
 </footer>
 
